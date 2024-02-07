@@ -1,0 +1,8 @@
+
+
+"""
+Google API integration
+
+"""
+
+SCOPES = [""]

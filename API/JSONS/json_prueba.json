@@ -1,0 +1,62 @@
+{
+    "viajes": [
+      {
+        "nombre": "Aventura en la Selva Amazonica",
+        "precio": 950.00,
+        "descripcion": "Explora la densa selva amazonica, conoce su biodiversidad y disfruta de actividades como kayak, senderismo y observacion de aves. Una experiencia única para conectar con la naturaleza y descubrir la vasta cultura local.",
+        "imagenURLs": [
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/selva_1.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/selva_2.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/selva_3.png"
+        ],
+        "fechasDisponibles": [
+          "2024-03-15",
+          "2024-04-20",
+          "2024-05-10",
+          "2024-06-07"
+        ],
+        "duracion": 10,
+        "incluye": ["Alojamiento", "Transporte interno", "Guia turistico", "Comidas"],
+        "destinos": ["Leticia", "Parque Nacional Amacayacu", "Isla de los Micos"]
+      },
+      {
+        "nombre": "Descubre Paris",
+        "precio": 1200.00,
+        "descripcion": "Visita la ciudad luz y sumérgete en su rica historia y cultura. Recorre el Louvre, la Torre Eiffel, Montmartre y disfruta de la exquisita gastronomía francesa. Un viaje pensado para los amantes del arte, la historia y la moda.",
+        "imagenURLs": [
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/paris_1.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/paris_2.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/paris_3.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/paris_4.png"
+        ],
+        "fechasDisponibles": [
+          "2024-04-01",
+          "2024-05-22",
+          "2024-07-14",
+          "2024-09-01"
+        ],
+        "duracion": 7,
+        "incluye": ["Alojamiento en hotel 4 estrellas", "Pases turisticos", "Guia turistico bilingue", "Transporte aeropuerto-hotel"],
+        "destinos": ["Torre Eiffel", "Museo del Louvre", "Catedral de Notre Dame", "Barrio de Montmartre"]
+      },
+      {
+        "nombre": "Expedicion a las Piramides de Egipto",
+        "precio": 1800.00,
+        "descripcion": "Un viaje en el tiempo para explorar las maravillas del Antiguo Egipto. Visita las piramides de Giza, el Templo de Karnak y el Valle de los Reyes. Aprende sobre la historia de los faraones y descubre los secretos de las antiguas tumbas.",
+        "imagenURLs": [
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/egipto1.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/egipto2.png",
+          "https://travel360-images-handle.s3.eu-north-1.amazonaws.com/travels_images/egipto3.png"
+        ],
+        "fechasDisponibles": [
+          "2024-03-10",
+          "2024-05-15",
+          "2024-10-20"
+        ],
+        "duracion": 12,
+        "incluye": ["Vuelos internacionales", "Alojamiento con desayuno", "Entradas a monumentos", "Guia especializado en egiptologia"],
+        "destinos": ["Piramides de Giza", "Templo de Karnak", "Valle de los Reyes", "Museo Egipcio de El Cairo"]
+      }
+    ]
+}
+  
