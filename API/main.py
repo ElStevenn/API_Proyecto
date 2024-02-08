@@ -8,7 +8,7 @@ from PIL import Image
 from app import schemas
 import uvicorn, os, aiofiles, json
 from typing import Optional
-from app.s3_acces.get_travel_image import ImagesHandleS3
+from app.s3_acces.get_travel_image import FilesAWSS3
 
 app = FastAPI(
     title="API Travel360    ",
@@ -38,7 +38,7 @@ app.add_middleware(
 app.mount("/files", StaticFiles(directory="files"), name="files") # Set static files
 
 # Call classes
-image_handler = ImagesHandleS3()
+image_handler = FilesAWSS3()
 
 
 ############# API ENDPOINTS DEFINITION ################################
@@ -99,6 +99,8 @@ async def response_tiquets():
     
 @app.put("/v1/cerrar_tiquet_ayuda/{id}", description="", tags=["Aplicación de escritorio"])
 async def close_help_ticket(id: str):
+
+    
     return {"response":"under construction"}
 
 

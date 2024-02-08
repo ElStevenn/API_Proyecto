@@ -5,7 +5,7 @@ from ..security.enviroment import env_variable
 
 
 
-class ImagesHandleS3():
+class FilesAWSS3():
     """
      *add description about this class here*
     """

@@ -76,6 +76,9 @@ class MailHandle(EmailSender):
         """
         self.send_email(user_email, f"Successful Registration for {user_name}", html_content)
 
+    def send_user_as_recived_help(self, user_name, subject, text_content, ,admin_name="Admin"):
+        pass
+
     
 
 

@@ -145,4 +145,8 @@ if __name__ == "__main__":
     env_variable["AWS_ACCES_KEY"]
     env_variable["AWS_SECRET_ACCES_KEY"]
     
-    print(env_variable["AWS_ACCES_KEY"]); print(env_variable["AWS_SECRET_ACCES_KEY"])
+    # amadeus API Keys
+    env_variable["AMADEUS_API_KEY"]
+    env_variable["AMADEUS_API_SECRET"]
+    env_variable["AMADEUS_ACCES_TOKEN"]
+    print(env_variable["AMADEUS_API_KEY"]); print(env_variable["AMADEUS_API_SECRET"])

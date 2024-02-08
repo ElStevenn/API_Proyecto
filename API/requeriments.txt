@@ -1,7 +1,0 @@
-fastapi
-SQLAlchemy
-uvicorn
-pillow
-cryptography
-async-class
-boto3
