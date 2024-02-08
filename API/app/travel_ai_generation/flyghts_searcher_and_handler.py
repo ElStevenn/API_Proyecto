@@ -4,6 +4,8 @@ import requests, logging, json
 from ..security.enviroment import env_variable
 import asyncio
 from typing import Optional
+from datetime import datetime
+import re
 
 """
 Documentation Page: 
@@ -54,6 +56,26 @@ class flights_handler(amadeus_auth):
 
     def get_city_fromn_IATA(self, iata_code):
         pass
+    
+    def duration_to_readable(self, duration_str):
+            # Extract hours and minutes from the duration string
+        hours_match = re.search(r'(\d+)H', duration_str)
+        minutes_match = re.search(r'(\d+)M', duration_str)
+
+        hours = int(hours_match.group(1)) if hours_match else 0
+        minutes = int(minutes_match.group(1)) if minutes_match else 0
+
+        # Format the duration into a human-readable string
+        duration_readable = ''
+        if hours > 0:
+            duration_readable += f"{hours} hours "
+        if minutes > 0:
+            duration_readable += f"{minutes} minutes"
+
+        # Alternatively, if you prefer "5:30" format for 5 hours and 30 minutes:
+        # duration_readable = f"{hours}:{minutes:02d}"
+
+        return duration_readable.strip()
 
     def get_flights_offer(
             self, originLocationCode: str, destinationLocationCode: str, departureDate: str, adults: Optional[str] = 1,
@@ -103,13 +125,15 @@ class flights_handler(amadeus_auth):
             for itinerary in flight_offer['itineraries']:
                 segments = []
                 for segment in itinerary['segments']:
+                    departure_time = datetime.fromisoformat(segment['departure']['at'])
+                    arrival_time = datetime.fromisoformat(segment['arrival']['at'])
                     segment_details = {
                         'departure': segment['departure']['iataCode'],
                         'arrival': segment['arrival']['iataCode'],
                         'carrier': segment['carrierCode'],
-                        'departure_time': segment['departure']['at'],
-                        'arrival_time': segment['arrival']['at'],
-                        'duration': segment['duration']
+                        'departure_time': departure_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        'arrival_time': arrival_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        'duration': self.duration_to_readable(segment['duration']) # Get duration in readble way
                     }
                     segments.append(segment_details)
                 itineraries.append(segments)
@@ -117,8 +141,8 @@ class flights_handler(amadeus_auth):
             flight_details['itineraries'] = itineraries
             flight_data.append(flight_details)
 
-        # Display extracted data
-        print(json.dumps(flight_data, indent=2))
+        # Return extracted data
+        return json.dumps(flight_data, indent=2)
         
 
 
