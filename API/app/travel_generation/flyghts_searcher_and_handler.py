@@ -4,12 +4,15 @@ import requests, logging, json
 from ..security.enviroment import env_variable
 import asyncio
 from typing import Optional
+from bs4 import BeautifulSoup
 from datetime import datetime
 import re
 
 """
 Documentation Page: 
 https://developers.amadeus.com/self-service/category/flights/api-doc/flight-offers-search
+
+Airplain logo: AirlineLogos.net
 """
 
 
@@ -55,10 +58,18 @@ class flights_handler(amadeus_auth):
         pass
 
     def get_city_fromn_IATA(self, iata_code):
-        pass
-    
+        """function extraction: https://github.com/Carlision/IATA-to-city-converter/blob/main/iata_to_city.py"""
+
+        url = f'https://www.iata.org/en/publications/directories/code-search/?airport.search={iata_code}'
+        html_text = requests.get(url).text
+        soup = BeautifulSoup(html_text, 'lxml')
+        table = soup.find('table', class_='datatable')
+        cell = table.find('td', string='City Name').next.next.next.next.next.next.next.next.next.next.next.next.next
+        city_name = cell.find('td').text
+        return city_name
+        
     def duration_to_readable(self, duration_str):
-            # Extract hours and minutes from the duration string
+        # Extract hours and minutes from the duration string
         hours_match = re.search(r'(\d+)H', duration_str)
         minutes_match = re.search(r'(\d+)M', duration_str)
 
@@ -72,7 +83,7 @@ class flights_handler(amadeus_auth):
         if minutes > 0:
             duration_readable += f"{minutes} minutes"
 
-        # Alternatively, if you prefer "5:30" format for 5 hours and 30 minutes:
+        # Alternatively, if I prefer "5:30" format for 5 hours and 30 minutes:
         # duration_readable = f"{hours}:{minutes:02d}"
 
         return duration_readable.strip()
@@ -127,13 +138,15 @@ class flights_handler(amadeus_auth):
                 for segment in itinerary['segments']:
                     departure_time = datetime.fromisoformat(segment['departure']['at'])
                     arrival_time = datetime.fromisoformat(segment['arrival']['at'])
+                    carrier_code = segment['carrierCode']
+                    airline_name = response["dictionaries"]["carriers"].get(carrier_code, "Unknown Airline")
                     segment_details = {
-                        'departure': segment['departure']['iataCode'],
-                        'arrival': segment['arrival']['iataCode'],
-                        'carrier': segment['carrierCode'],
+                        'departure': self.get_city_fromn_IATA(segment['departure']['iataCode']),
+                        'arrival': self.get_city_fromn_IATA(segment['arrival']['iataCode']),
+                        'airline': airline_name,  
                         'departure_time': departure_time.strftime("%Y-%m-%d %H:%M:%S"),
                         'arrival_time': arrival_time.strftime("%Y-%m-%d %H:%M:%S"),
-                        'duration': self.duration_to_readable(segment['duration']) # Get duration in readble way
+                        'duration': self.duration_to_readable(segment['duration'])  # sd
                     }
                     segments.append(segment_details)
                 itineraries.append(segments)
@@ -147,22 +160,11 @@ class flights_handler(amadeus_auth):
 
 
 
-
-
-
-def get_IATA_code(city):
-    pass
-
-def get_flights():
-    """"""
-    pass
-
-
-
 if __name__ == "__main__":
 
     # generate_acess_token()
     print(env_variable["AMADEUS_ACCES_TOKEN"])
 
     flights = flights_handler()
-    print(flights.get_flights_offer("BCN", "BOS", "2024-05-02", "2"))
+    result = flights.get_flights_offer("BCN", "BOS", "2024-05-02", "2")
+    print(result)

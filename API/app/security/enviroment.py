@@ -149,4 +149,8 @@ if __name__ == "__main__":
     env_variable["AMADEUS_API_KEY"]
     env_variable["AMADEUS_API_SECRET"]
     env_variable["AMADEUS_ACCES_TOKEN"]
-    print(env_variable["AMADEUS_API_KEY"]); print(env_variable["AMADEUS_API_SECRET"])
+
+    # Database
+    env_variable["TRAVEL360_DATABASE_URL"] = "postgresql+asyncpg://postgres:mierda69@185.254.206.129/Travel360"
+
+    print(env_variable["TRAVEL360_DATABASE_URL"])
