@@ -1,0 +1,16 @@
+fastapi
+SQLAlchemy
+uvicorn
+pillow
+cryptography
+async-class
+boto3
+aioboto3
+beautifulsoup4
+lxml
+tqdm
+pandas
+numpy
+SQLAlchemy
+pyjwt
+Cryptodome
