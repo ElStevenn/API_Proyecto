@@ -7,5 +7,6 @@
 ## Authentication      
 Travel360 utilizes **Google OAuth 2.0** for secure logins via Google accounts and a **straightforward registration-login** mechanism for personalized user access.
 
-## API Endpoints
-
+## Relatonal Database
+![Travel360 Relational DB](https://travel360-images-handle.s3.eu-north-1.amazonaws.com/static_images/travel_360_db_design.png)
+ - The Database has 11 tables, where we store all the structured data
