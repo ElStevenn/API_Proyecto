@@ -10,3 +10,11 @@ Travel360 utilizes **Google OAuth 2.0** for secure logins via Google accounts an
 ## Relational Database
 ![Travel360 Relational DB](https://travel360-images-handle.s3.eu-north-1.amazonaws.com/static_images/travel_360_db_design.png)
  - The Database has 11 tables, where we store all the structured data
+
+## Non-relational database
+ - Here is where the non-relational database will be
+
+## Explanation in a tiny nutshell
+ - The API endpoints are split into two parts: the "Android Part" for connections from Android devices and the "Desk part" for connections from desktop applications. Each part serves specific functionalities tailored to the respective platform's needs.
+
+
