@@ -17,4 +17,4 @@ Travel360 utilizes **Google OAuth 2.0** for secure logins via Google accounts an
 ## Explanation in a tiny nutshell
  - The API endpoints are split into two parts: the "Android Part" for connections from Android devices and the "Desk part" for connections from desktop applications. Each part serves specific functionalities tailored to the respective platform's needs.
 
-
+soon this project will recive the whole update
